@@ -6,12 +6,12 @@ class App extends Component {
   state = {
     colors:
       [
-        { id: 1, color: "red" },
+        { id: 1, color: null },
         { id: 2, color: null },
         { id: 3, color: null },
         { id: 4, color: null }
       ],
-    figuren: ["yellow", "pink", "aquamarine", "aliceblue"]
+    figuren: ["#FFDC00", "pink", "aquamarine", "#01FF70", "#0074D9", "#111111"]
   }
   onDragOverHandler = event => {
     event.preventDefault()
@@ -21,7 +21,6 @@ class App extends Component {
     event.dataTransfer.setData("colorDragged", colorDragged)
   }
   onDropHandler = (event, indexOfDropCircle) => {
-    console.log(indexOfDropCircle)
     let colorDragged = event.dataTransfer.getData("colorDragged")
     let colors = this.state.colors.map(color => { return { ...color } })
     colors[indexOfDropCircle].color = colorDragged
@@ -56,7 +55,7 @@ class App extends Component {
           draggable
           onDragStart={event => this.onDragStartHandler(event, figurFarbe)}
           index={index}
-          className="circleInside"
+          className="circleInside spielfiguren"
           style={{ backgroundColor: `${figurFarbe}` }}
         >
         </div>
@@ -65,8 +64,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        {spielFelder}
-        {spielFiguren}
+        <h2 className="header">Master Mind </h2>
+        <div className="leftside"> Some infos </div>
+        <div className="gameboard">
+          {spielFelder}
+          <button className="gameHistoryButton"> Try it!!</button>
+        </div>
+        <div className="spielfiguren">
+          {spielFiguren}
+        </div>
       </div>
     );
   }

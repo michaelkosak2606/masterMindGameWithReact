@@ -1,11 +1,22 @@
+.App{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 8vh 92vh;
+}
+
+
+
+
+
+
 .gameCircle{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  width: 100px;
-  background-color: bisque;
-  border: 1px solid black;
+  height: 85px;
+  width: 85px;
+  background-color: #85144b;
+  border: none;
 border-radius: 50%;
 margin: 5px;
 }
@@ -13,9 +24,75 @@ margin: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
-  width: 80px;
-  border: 1px solid black;
-border-radius: 50%;
+  height: 70px;
+  width: 70px;
+border-radius: 100%;
 margin: 5px;
+}
+.spielfiguren{
+  box-shadow: 0 1px grey;
+
+}
+.spielfiguren:hover{
+  top: -2px;
+  box-shadow: 0 0px grey;
+
+}
+.header{
+  background-color: rgb(116, 182, 240);
+  grid-column: span 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.leftside{
+  grid-column: span 2;
+  background-color: aquamarine;
+  margin-top: 0;
+}
+.gameboard{
+  background: #f06060;
+  grid-column: span 8;
+  display:flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.spielfiguren{
+  grid-column: span 2;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gameHistoryButton{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  width: 110px;
+  outline: none;
+  padding: 18px;
+  border-radius: 20px;
+  font-size: 15px;
+  letter-spacing:1px;
+  font-weight: bold;
+  color: #fff;
+  background: #cb4e4e;
+  border: none;
+  box-shadow: 0 4px #ab3c3c;
+    cursor: pointer;
+  position: relative; /* to move the buttons down */
+  text-transform: uppercase;  
+}
+.gameHistoryButton:hover{
+  top:1px;
+  box-shadow: 0 2px #ab3c3c;
+}
+.gameHistoryButton:active{
+  box-shadow: none;
+  top: 2px;
 }
