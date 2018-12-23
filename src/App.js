@@ -67,6 +67,12 @@ class App extends Component {
         <h2 className="header">Master Mind </h2>
         <div className="leftside"> Some infos </div>
         <div className="gameboard">
+          <div className="hits">
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
+          </div>
           {spielFelder}
           <button className="gameHistoryButton"> Try it!!</button>
         </div>

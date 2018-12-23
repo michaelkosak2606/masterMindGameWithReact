@@ -55,6 +55,7 @@ margin: 5px;
 .gameboard{
   background: #f06060;
   grid-column: span 8;
+  padding: 20px;
   display:flex;
   align-items: flex-end;
   justify-content: center;
@@ -71,8 +72,8 @@ margin: 5px;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 20px;
   margin-left: 20px;
+  margin-bottom: 20px;
   width: 110px;
   outline: none;
   padding: 18px;
@@ -95,4 +96,21 @@ margin: 5px;
 .gameHistoryButton:active{
   box-shadow: none;
   top: 2px;
+}
+.hits{
+height: 75px;
+width: 75px;
+border: 1px solid black;
+border-radius: 5px;
+margin-bottom: 8px;
+display: grid;
+grid-template-columns: auto auto;
+grid-template-rows: auto auto;
+align-items: center;
+justify-items: center;
+}
+.square{
+  height: 50%;
+  width: 50%;
+  border: 1px solid black;
 }
