@@ -7,7 +7,7 @@ export class Spielfiguren extends Component {
                 <div
                     draggable
                     onDragStart={event => this.props.onDragStart(event, figurFarbe)}
-                    index={index}
+                    key={index}
                     className="circleInside spielfiguren"
                     style={{ backgroundColor: `${figurFarbe}` }}
                 >

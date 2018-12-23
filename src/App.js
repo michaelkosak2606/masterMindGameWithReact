@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header'
 import InfoBoard from './components/InfoBoard'
-import Button from './components/Button'
+import GameRow from './components/GameRow'
 import Spielfiguren from './components/Spielfiguren'
 import './App.css';
 
@@ -15,6 +15,7 @@ class App extends Component {
         { id: 3, color: null },
         { id: 4, color: null }
       ],
+    gamerows: [null, "inactive", "inactive", "inactive", "inactive", "inactive"],
     figuren: ["#FFDC00", "pink", "aquamarine", "#01FF70", "#0074D9", "#111111"]
   }
   onDragOverHandler = event => {
@@ -35,44 +36,31 @@ class App extends Component {
   }
 
   render() {
-    const spielFelder = this.state.colors.map((colorInside, index) => {
+    const gameboard = this.state.gamerows.map((row, index) => {
       return (
-        <div
-          className="gameCircle"
-          key={colorInside.id}
-        >
-          <div
-            onDragOver={event => this.onDragOverHandler(event)}
-            onDrop={event => this.onDropHandler(event, index)}
-            className="circleInside"
-            style={{ backgroundColor: `${colorInside.color}` }}
-          >
-
-          </div>
-        </div>
+        <GameRow
+          key={index}
+          onDragOver={this.onDragOverHandler}
+          onDrop={this.onDropHandler}
+          data={this.state}
+          clickable={row}
+        />
       )
     })
 
-    
+
 
     return (
       <div className="App">
-           <Header />
-           <InfoBoard turnNumber = {this.state.turn} 
-           />
-          <div className="gameboard">
-            <div className="hits">
-              <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
-            </div>
-              {spielFelder}
-              <Button />        
-          </div>
-        <Spielfiguren 
-        data = {this.state}
-        onDragStart ={this.onDragStartHandler}
+        <Header />
+        <InfoBoard turnNumber={this.state.turn}
+        />
+        <div className="gameboard">
+          {gameboard}
+        </div>
+        <Spielfiguren
+          data={this.state}
+          onDragStart={this.onDragStartHandler}
         />
       </div>
     );

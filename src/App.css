@@ -69,8 +69,16 @@ margin: 5px;
   grid-column: span 8;
   padding: 20px;
   display:flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
+}
+.gameRow{
+  display: flex;
+  align-items: center;
+}
+.inactive{
+   pointer-events: none; 
 }
 .spielfiguren{
   grid-column: span 2;

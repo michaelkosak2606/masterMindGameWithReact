@@ -4,8 +4,7 @@ export class Button extends Component {
     render() {
         return (
             <div>
-                <button className="gameHistoryButton"> Try it!!</button>
-
+                <button className="gameHistoryButton"> {this.props.text}</button>
             </div>
         )
     }
