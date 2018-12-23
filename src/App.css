@@ -3,11 +3,28 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 8vh 92vh;
 }
+.header{
+  background-color: rgb(116, 182, 240);
+  grid-column: span 12;
 
-
-
-
-
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.header h1 {
+  grid-column: span 8;
+margin-left: 10%;
+}
+.header span{
+  grid-column: span 1;
+grid-gap: 1em;
+  color: #fff;
+}
+.header span:hover{
+  cursor: pointer;
+}
 
 .gameCircle{
   display: flex;
@@ -38,19 +55,14 @@ margin: 5px;
   box-shadow: 0 0px grey;
 
 }
-.header{
-  background-color: rgb(116, 182, 240);
-  grid-column: span 12;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.leftside{
+
+.infoBoard{
   grid-column: span 2;
   background-color: aquamarine;
   margin-top: 0;
+  display: flex;
+  flex-direction: column;
+   align-items: center;
 }
 .gameboard{
   background: #f06060;

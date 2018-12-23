@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-
+import Header from './components/Header'
+import InfoBoard from './components/InfoBoard'
+import Button from './components/Button'
+import Spielfiguren from './components/Spielfiguren'
 import './App.css';
 
 class App extends Component {
   state = {
+    turn: 1,
     colors:
       [
         { id: 1, color: null },
@@ -49,36 +53,27 @@ class App extends Component {
       )
     })
 
-    const spielFiguren = this.state.figuren.map((figurFarbe, index) => {
-      return (
-        <div
-          draggable
-          onDragStart={event => this.onDragStartHandler(event, figurFarbe)}
-          index={index}
-          className="circleInside spielfiguren"
-          style={{ backgroundColor: `${figurFarbe}` }}
-        >
-        </div>
-      )
-    })
+    
 
     return (
       <div className="App">
-        <h2 className="header">Master Mind </h2>
-        <div className="leftside"> Some infos </div>
-        <div className="gameboard">
-          <div className="hits">
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square"></div>
+           <Header />
+           <InfoBoard turnNumber = {this.state.turn} 
+           />
+          <div className="gameboard">
+            <div className="hits">
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+            </div>
+              {spielFelder}
+              <Button />        
           </div>
-          {spielFelder}
-          <button className="gameHistoryButton"> Try it!!</button>
-        </div>
-        <div className="spielfiguren">
-          {spielFiguren}
-        </div>
+        <Spielfiguren 
+        data = {this.state}
+        onDragStart ={this.onDragStartHandler}
+        />
       </div>
     );
   }
