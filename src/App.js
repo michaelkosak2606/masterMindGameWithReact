@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Header from './components/Header'
 import InfoBoard from './components/InfoBoard'
 import GameRow from './components/GameRow'
+import HiddenColors from './components/HiddenColors'
 import Spielfiguren from './components/Spielfiguren'
 import './App.css';
 
 class App extends Component {
   state = {
+    hiddenColors: [null, null, "yellow", "blue"],
     turn: 0,
     gamerows: [
       {
@@ -104,7 +106,26 @@ class App extends Component {
       })
     })
   }
+  fillHiddenColors = () => {
+    const colors = [...this.state.figuren, null]
+    let randomNumbersArray = []
+    for (let i = 1; i <= 4; i++) {
+      let randomNUmber = Math.floor((Math.random() * colors.length))
+      if (randomNUmber === 7) { randomNUmber = 6 }
+      randomNumbersArray.push(randomNUmber)
+    }
+    const hiddenColors = randomNumbersArray.map(randomNUmber => {
+      return (colors[randomNUmber])
+    })
 
+    this.setState({
+      hiddenColors: hiddenColors
+    })
+
+  }
+  componentDidMount() {
+    this.fillHiddenColors()
+  }
   render() {
     const gameboard = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
@@ -129,8 +150,12 @@ class App extends Component {
         <Header />
         <InfoBoard turnNumber={this.state.turn}
         />
+
         <div className="gameboard">
           {gameboard}
+          <HiddenColors
+            hiddenColors={this.state.hiddenColors}
+          />
         </div>
         <Spielfiguren
           data={this.state}

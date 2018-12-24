@@ -24,7 +24,7 @@ export class GameRow extends Component {
             <h2>Turn {this.props.turn + 1}</h2> : null
 
         const rightArrow = this.props.checkTurnNumber ?
-            <div class="arrow-right"></div> : null
+            <div className="arrow-right"></div> : null
 
         return (
             <div className={`gameRow ${this.props.clickable}`}>
