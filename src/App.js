@@ -8,9 +8,6 @@ import './App.css';
 class App extends Component {
   state = {
     turn: 0,
-
-    // gamerows: [null, "inactive", "inactive", "inactive", "inactive", "inactive"],
-
     gamerows: [
       {
         status: null,
@@ -74,7 +71,7 @@ class App extends Component {
     event.preventDefault()
   }
   onDragStartHandler = (event, colorDragged) => {
-    console.log("dragging element with color: " + colorDragged)
+    // console.log("dragging element with color: " + colorDragged)
     event.dataTransfer.setData("colorDragged", colorDragged)
   }
   onDropHandler = (event, indexOfDropCircle) => {
@@ -110,6 +107,7 @@ class App extends Component {
 
   render() {
     const gameboard = this.state.gamerows.map((row, index) => {
+      const checkTurnNumber = this.state.turn === index
       return (
         <GameRow
           key={index}
@@ -118,6 +116,8 @@ class App extends Component {
           data={this.state.gamerows[index].colors}
           clickable={row.status}
           nextRound={this.nextRound}
+          checkTurnNumber={checkTurnNumber}
+          turn={this.state.turn}
         />
       )
     })
