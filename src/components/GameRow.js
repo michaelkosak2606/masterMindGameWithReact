@@ -3,18 +3,21 @@ import Button from './Button'
 
 export class GameRow extends Component {
     render() {
-        const spielFelder = this.props.data.colors.map((colorInside, index) => {
+
+        const spielFelder = this.props.data.map((spielFeld) => {
+
             return (
                 <div
                     className="gameCircle"
-                    key={colorInside.id}
+                    key={spielFeld.id}
                 >
                     <div
                         onDragOver={event => this.props.onDragOver(event)}
-                        onDrop={event => this.props.onDrop(event, index)}
+                        onDrop={event => this.props.onDrop(event, spielFeld.id)}
                         className="circleInside"
-                        style={{ backgroundColor: `${colorInside.color}` }}
+                        style={{ backgroundColor: `${spielFeld.color}` }}
                     >
+                        {spielFeld.id}
                     </div>
                 </div>
             )
@@ -29,7 +32,10 @@ export class GameRow extends Component {
                     <div className="square"></div>
                 </div>
                 {spielFelder}
-                <Button text="Try it!!" />
+                <Button
+                    text="Try it!!"
+                    onClick={this.props.nextRound}
+                />
             </div>
         )
     }
