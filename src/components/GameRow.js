@@ -31,10 +31,23 @@ export class GameRow extends Component {
                 {turnNumber}
                 {rightArrow}
                 <div className="hits">
-                    <div className="square"></div>
-                    <div className="square"></div>
-                    <div className="square"></div>
-                    <div className="square"></div>
+                    <div
+                        className="square"
+                        style={{ backgroundColor: `${this.props.guessedColors[0]}` }}
+                    ></div>
+                    <div
+                        className="square"
+                        style={{ backgroundColor: `${this.props.guessedColors[1]}` }}
+                    ></div>
+                    <div
+                        className="square"
+                        style={{ backgroundColor: `${this.props.guessedColors[2]}` }}
+                    ></div>
+                    <div
+                        className="square"
+                        style={{ backgroundColor: `${this.props.guessedColors[3]}` }}
+                    ></div>
+
                 </div>
                 {spielFelder}
                 <Button

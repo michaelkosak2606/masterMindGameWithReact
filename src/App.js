@@ -8,11 +8,12 @@ import './App.css';
 
 class App extends Component {
   state = {
-    hiddenColors: [null, null, "yellow", "blue"],
+    hiddenColors: [null, null, null, null],
     turn: 0,
     gamerows: [
       {
         status: null,
+        guessedColors: [null, null, null, null],
         colors: [
           { id: 1, color: null },
           { id: 2, color: null },
@@ -22,6 +23,7 @@ class App extends Component {
       },
       {
         status: "inactive",
+        guessedColors: [null, null, null, null],
         colors: [
           { id: 5, color: null },
           { id: 6, color: null },
@@ -31,6 +33,7 @@ class App extends Component {
       },
       {
         status: "inactive",
+        guessedColors: [null, null, null, null],
         colors: [
           { id: 9, color: null },
           { id: 10, color: null },
@@ -40,6 +43,7 @@ class App extends Component {
       },
       {
         status: "inactive",
+        guessedColors: [null, null, null, null],
         colors: [
           { id: 13, color: null },
           { id: 14, color: null },
@@ -49,6 +53,7 @@ class App extends Component {
       },
       {
         status: "inactive",
+        guessedColors: [null, null, null, null],
         colors: [
           { id: 17, color: null },
           { id: 18, color: null },
@@ -58,6 +63,7 @@ class App extends Component {
       },
       {
         status: "inactive",
+        guessedColors: [null, null, null, null],
         colors: [
           { id: 21, color: null },
           { id: 22, color: null },
@@ -89,6 +95,63 @@ class App extends Component {
       gamerows: gamerows
     })
   }
+
+  checkSameColors = () => {
+    let turn = this.state.turn
+    let colorsFromPlayer = this.state.gamerows[turn].colors.map(color => { return color.color })
+    //console.log(colors)
+    let rightColors = [...this.state.hiddenColors]
+    let guessedColors = []
+
+    const colorsReduced = colorsFromPlayer.filter((color, index) => {
+      return color !== rightColors[index]
+    })
+    const rightColorsReduced = rightColors.filter((rightColor, index) => {
+      return rightColor !== colorsFromPlayer[index]
+    })
+    /////////////////////////////////////////////////////
+    ///Putting Black Colors into guessed Array
+    for (let i = 1; i <= colorsFromPlayer.length - colorsReduced.length; i++) {
+      guessedColors.push("black")
+    }
+    /////////////////////////////////////////////////////
+    ///Checking if everything is okay
+    // console.log(colorsReduced)
+    // console.log(rightColorsReduced)
+    // console.log(guessedColors)
+
+    //////////////////////////////////////////////////
+    ///Checking reduced arrays to put white colors into guessedColors
+    let helparray = []
+    colorsReduced.forEach((item, index) => {
+      for (let i = 0; i < rightColorsReduced.length; i++) {
+        if (item === rightColorsReduced[i]) {
+          helparray.push(item)
+        }
+      }
+      if (helparray.length > 0) {
+        guessedColors.push("white")
+        let number = rightColorsReduced.indexOf(helparray[0])
+        rightColorsReduced.splice(number, 1)
+        helparray = []
+      }
+    })
+    ////Fill guessedColors with null, if its shorter than 4
+    console.log(guessedColors)
+    let differenceToFill = 4 - guessedColors.length
+    for (let i = 0; i < differenceToFill; i++) {
+      guessedColors.push(null)
+    }
+    console.log(guessedColors)
+    ///Putting guessedColors into state
+    let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
+    gamerows[turn].guessedColors = guessedColors
+
+    this.setState({
+      gamerows: gamerows
+    }, () => this.nextRound())
+  }
+
 
   nextRound = () => {
     let turn = this.state.turn
@@ -136,9 +199,10 @@ class App extends Component {
           onDrop={this.onDropHandler}
           data={this.state.gamerows[index].colors}
           clickable={row.status}
-          nextRound={this.nextRound}
+          nextRound={this.checkSameColors}
           checkTurnNumber={checkTurnNumber}
           turn={this.state.turn}
+          guessedColors={this.state.gamerows[index].guessedColors}
         />
       )
     })
