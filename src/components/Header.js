@@ -5,8 +5,7 @@ export class Header extends Component {
         return (
             <div className="header">
                 <h1>Master Mind </h1>
-
-                <span> New Game</span>
+                <span onClick={this.props.newGame}> New Game</span>
                 <span> Give up</span>
             </div>
         )

@@ -8,73 +8,74 @@ import './App.css';
 
 class App extends Component {
   state = {
-    hiddenColors: [null, null, null, null],
+    hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     turn: 0,
     gamerows: [
       {
         status: null,
-        guessedColors: [null, null, null, null],
+        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
         colors: [
-          { id: 1, color: null },
-          { id: 2, color: null },
-          { id: 3, color: null },
-          { id: 4, color: null }
+          { id: 1, color: 'transparent' },
+          { id: 2, color: 'transparent' },
+          { id: 3, color: 'transparent' },
+          { id: 4, color: 'transparent' }
         ]
       },
       {
         status: "inactive",
-        guessedColors: [null, null, null, null],
+        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
         colors: [
-          { id: 5, color: null },
-          { id: 6, color: null },
-          { id: 7, color: null },
-          { id: 8, color: null }
+          { id: 5, color: 'transparent' },
+          { id: 6, color: 'transparent' },
+          { id: 7, color: 'transparent' },
+          { id: 8, color: 'transparent' }
         ]
       },
       {
         status: "inactive",
-        guessedColors: [null, null, null, null],
+        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
         colors: [
-          { id: 9, color: null },
-          { id: 10, color: null },
-          { id: 11, color: null },
-          { id: 12, color: null }
+          { id: 9, color: 'transparent' },
+          { id: 10, color: 'transparent' },
+          { id: 11, color: 'transparent' },
+          { id: 12, color: 'transparent' }
         ]
       },
       {
         status: "inactive",
-        guessedColors: [null, null, null, null],
+        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
         colors: [
-          { id: 13, color: null },
-          { id: 14, color: null },
-          { id: 15, color: null },
-          { id: 16, color: null }
+          { id: 13, color: 'transparent' },
+          { id: 14, color: 'transparent' },
+          { id: 15, color: 'transparent' },
+          { id: 16, color: 'transparent' }
         ]
       },
       {
         status: "inactive",
-        guessedColors: [null, null, null, null],
+        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
         colors: [
-          { id: 17, color: null },
-          { id: 18, color: null },
-          { id: 19, color: null },
-          { id: 20, color: null }
+          { id: 17, color: 'transparent' },
+          { id: 18, color: 'transparent' },
+          { id: 19, color: 'transparent' },
+          { id: 20, color: 'transparent' }
         ]
       },
       {
         status: "inactive",
-        guessedColors: [null, null, null, null],
+        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
         colors: [
-          { id: 21, color: null },
-          { id: 22, color: null },
-          { id: 23, color: null },
-          { id: 24, color: null }
+          { id: 21, color: 'transparent' },
+          { id: 22, color: 'transparent' },
+          { id: 23, color: 'transparent' },
+          { id: 24, color: 'transparent' }
         ]
       },
 
     ],
     figuren: ["#FFDC00", "pink", "aquamarine", "#01FF70", "#0074D9", "#111111"]
   }
+
   onDragOverHandler = event => {
     event.preventDefault()
   }
@@ -99,7 +100,6 @@ class App extends Component {
   checkSameColors = () => {
     let turn = this.state.turn
     let colorsFromPlayer = this.state.gamerows[turn].colors.map(color => { return color.color })
-    //console.log(colors)
     let rightColors = [...this.state.hiddenColors]
     let guessedColors = []
 
@@ -114,12 +114,6 @@ class App extends Component {
     for (let i = 1; i <= colorsFromPlayer.length - colorsReduced.length; i++) {
       guessedColors.push("black")
     }
-    /////////////////////////////////////////////////////
-    ///Checking if everything is okay
-    // console.log(colorsReduced)
-    // console.log(rightColorsReduced)
-    // console.log(guessedColors)
-
     //////////////////////////////////////////////////
     ///Checking reduced arrays to put white colors into guessedColors
     let helparray = []
@@ -140,9 +134,9 @@ class App extends Component {
     console.log(guessedColors)
     let differenceToFill = 4 - guessedColors.length
     for (let i = 0; i < differenceToFill; i++) {
-      guessedColors.push(null)
+      guessedColors.push('transparent')
     }
-    console.log(guessedColors)
+
     ///Putting guessedColors into state
     let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
     gamerows[turn].guessedColors = guessedColors
@@ -150,8 +144,8 @@ class App extends Component {
     this.setState({
       gamerows: gamerows
     }, () => this.nextRound())
-  }
 
+  }
 
   nextRound = () => {
     let turn = this.state.turn
@@ -159,7 +153,6 @@ class App extends Component {
     gamerows[turn].status = "inactive"
     let nextTurn = turn + 1
     gamerows[nextTurn].status = null
-
 
     this.setState({
       turn: this.state.turn + 1
@@ -170,7 +163,7 @@ class App extends Component {
     })
   }
   fillHiddenColors = () => {
-    const colors = [...this.state.figuren, null]
+    const colors = [...this.state.figuren, 'transparent']
     let randomNumbersArray = []
     for (let i = 1; i <= 4; i++) {
       let randomNUmber = Math.floor((Math.random() * colors.length))
@@ -186,6 +179,19 @@ class App extends Component {
     })
 
   }
+  newGame = () => {
+    let gamerows = this.state.gamerows
+
+    for (let i = 0; i < 6; i++) {
+      gamerows[i].colors.forEach(color => color.color = "transparent")
+      gamerows[i].guessedColors.forEach((color, index, guessedColors) => guessedColors[index] = "transparent")
+    }
+    this.setState({
+      turn: 0,
+      gamerows: gamerows
+    }, () => this.fillHiddenColors())
+  }
+
   componentDidMount() {
     this.fillHiddenColors()
   }
@@ -211,7 +217,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header />
+        <Header
+          newGame={this.newGame}
+        />
         <InfoBoard turnNumber={this.state.turn}
         />
 
