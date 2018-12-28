@@ -165,8 +165,9 @@ class App extends Component {
     if (JSON.stringify(guessedColors) === JSON.stringify(["black", "black", "black", "black"])) {
       this.setState({
         gamerows: gamerows,
+        gameEnded: true,
         gameEndMessage: "You won, congratulations! :)"
-      }, () => this.gameEnded())
+      })
 
     } else if (JSON.stringify(guessedColors) !== JSON.stringify(["black", "black", "black", "black"]) && this.state.turn === 5) {
       this.setState({
@@ -214,14 +215,16 @@ class App extends Component {
     }, () => this.loadingReady())
   }
   gameEnded = () => {
-    const turn = this.state.turn
-    let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
-    gamerows[turn].status = "inactive"
-    this.setState({
-      gameEnded: true,
-      gamerows: gamerows,
-      gameEndMessage: "Sorry, you lost!"
-    })
+    if (this.state.gameEnded === false) {
+      const turn = this.state.turn
+      let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
+      gamerows[turn].status = "inactive"
+      this.setState({
+        gameEnded: true,
+        gamerows: gamerows,
+        gameEndMessage: "Sorry, you lost!"
+      })
+    }
   }
   loadingReady = () => {
     this.fillHiddenColors()
@@ -235,7 +238,7 @@ class App extends Component {
     const loadingMessage = this.state.loading ? <LoadingCirlce /> : "Good Luck!"
 
     const slideClass = this.state.gameEnded ? "slide-out" : ""
-    const opacityHiddenColors = this.state.gameEnded ? "1" : "0"
+    const opacityHiddenColors = this.state.gameEnded ? "1" : "1"
     const gameboard = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
       return (
