@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import InfoBoard from './components/InfoBoard'
 import GameRow from './components/GameRow'
 import HiddenColors from './components/HiddenColors'
-import Spielfiguren from './components/Spielfiguren'
-import LoadingCirlce from "./components/ReactLoading";
+import SideBoard from './components/SideBoard'
+import LoadingCirlce from "./components/LoadingCircle";
 
 import './App.css';
 
 class App extends Component {
   state = {
     loading: true,
-    gameEndMessage: "",
+    gameEndMessage: " Transparen Text ",
     gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     turn: 0,
@@ -210,7 +210,7 @@ class App extends Component {
       turn: 0,
       gamerows: gamerows,
       gameEnded: false,
-      gameEndMessage: "",
+      gameEndMessage: " Transparen Text ",
       loading: true
     }, () => this.loadingReady())
   }
@@ -275,9 +275,10 @@ class App extends Component {
             slideOut={slideClass}
             gameEndMessage={this.state.gameEndMessage}
             loadingMessage={loadingMessage}
+            gameEnded={this.state.gameEnded}
           />
         </div>
-        <Spielfiguren
+        <SideBoard
           data={this.state}
           onDragStart={this.onDragStartHandler}
         />

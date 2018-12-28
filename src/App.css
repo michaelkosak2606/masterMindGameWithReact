@@ -66,7 +66,7 @@ margin: 5px;
   outline: none;
   border-radius: 20px;
   font-size: 15px;
-  letter-spacing:1px;
+  letter-spacing:2px;
   font-weight: bold;
   color: #fff;
   background: #4ecba8;
@@ -93,22 +93,32 @@ margin: 5px;
 }
 .gameRow{
   display: flex;
-  align-items: center;
   width: 85%;
+  align-items: center;
  justify-content:flex-end;
+ margin-bottom: 5px;
 }
 
 .inactive{
   pointer-events: none; 
   opacity: 0.72;
 }
-.spielfiguren{
+
+.side-board{
   grid-column: span 2;
   display:flex;
+  background-image: url("images/sideBoard.jpeg");
+  /* background-size: contain;
+  background-repeat: no-repeat; */
+  opacity: 0.5;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+}
+.spielfiguren{
   box-shadow: 0 1px grey;
+  opacity: 1.5;
 }
 .spielfiguren:hover{
   top: -2px;
@@ -172,12 +182,12 @@ margin-left: 20px;
 }
 .hiddenColorsContainer{
 flex-grow: 1;
-justify-content: flex-end;
 align-items: center;
-background-color: transparent;
 margin-top: 0;
 display: flex;
 flex-direction: column-reverse;
+letter-spacing:2px;
+
 }
 .loading{
   display: flex;
@@ -187,7 +197,7 @@ flex-direction: column-reverse;
 }
 .hiddenColorsBoard{
 display: flex;
-height: 100px;
+height: 120px;
 width: 80%;
 color: white;
 background-color: #ab3c3c;
@@ -206,7 +216,7 @@ border-bottom-left-radius: 15%;
     transform: translateY(0px)
   }
   100%{    
-    transform: translateY(-100px)
+    transform: translateY(-90px)
   }
 }
 .slide-out{
@@ -218,7 +228,7 @@ border-bottom-left-radius: 15%;
   0%{
     transform: translateY(0px)
   }
-  5%{
+  10%{
     transform: translateY(5px)
   }
   100%{    

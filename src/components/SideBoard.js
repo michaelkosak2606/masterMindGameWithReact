@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Spielfiguren extends Component {
+export class SideBoard extends Component {
     render() {
         const spielFiguren = this.props.data.figuren.map((figurFarbe, index) => {
             return (
@@ -16,11 +16,11 @@ export class Spielfiguren extends Component {
         })
 
         return (
-            <div className="spielfiguren">
+            <div className="side-board">
                 {spielFiguren}
             </div>
         )
     }
 }
 
-export default Spielfiguren
+export default SideBoard
