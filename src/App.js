@@ -238,7 +238,7 @@ class App extends Component {
     const loadingMessage = this.state.loading ? <LoadingCirlce /> : "Good Luck!"
 
     const slideClass = this.state.gameEnded ? "slide-out" : ""
-    const opacityHiddenColors = this.state.gameEnded ? "1" : "1"
+    const opacityHiddenColors = this.state.gameEnded ? "1" : "0"
     const gameboard = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
       return (
