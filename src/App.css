@@ -57,11 +57,32 @@ margin: 5px;
   align-items: center;
 }
 .infoBoardButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   height: 40px;
-margin: 5px;
-cursor: pointer;
-font-size: 15px;
+  margin-top: 20px;
+  outline: none;
+  border-radius: 20px;
+  font-size: 15px;
+  letter-spacing:1px;
+  font-weight: bold;
+  color: #fff;
+  background: #4ecba8;
+  border: none;
+  box-shadow: 0 4px #0a7a5b;
+  cursor: pointer;
+  position: relative; /* to move the buttons down */
+  text-transform: uppercase; 
+}
+.infoBoardButton:hover{
+  top:1px;
+  box-shadow: 0 2px #0a7a5b;
+}
+.infoBoardButton:active{
+  box-shadow: none;
+  top: 2px;
 }
 .gameboard{
   background: #f06060;
@@ -162,6 +183,7 @@ flex-direction: column-reverse;
 display: flex;
 height: 100px;
 width: 80%;
+color: white;
 background-color: #ab3c3c;
 justify-content: center;
 align-items: center;
@@ -174,7 +196,6 @@ border-bottom-left-radius: 15%;
   /* transition: all 1.7s ease-out; */
 }
 @keyframes slideUp {
-  
   0%{
     transform: translateY(0px)
   }

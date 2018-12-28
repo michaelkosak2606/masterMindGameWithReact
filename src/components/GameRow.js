@@ -15,7 +15,6 @@ export class GameRow extends Component {
                         className="circleInside"
                         style={{ backgroundColor: `${colorField.color}` }}
                     >
-                        {colorField.id}
                     </div>
                 </div>
             )

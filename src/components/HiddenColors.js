@@ -24,7 +24,7 @@ export class HiddenColors extends Component {
                 </div>
                 <div className={"hiddenColorsBoard " + this.props.slideOut}>
                     <h1>
-                        MASTER MIND
+                        GOOD LUCK!
                     </h1>
                 </div>
             </div>
