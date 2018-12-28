@@ -7,7 +7,7 @@ import './App.css';
 
 class App extends Component {
   state = {
-    gameWon: " ",
+    gameEndMessage: "",
     gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     turn: 0,
@@ -161,10 +161,16 @@ class App extends Component {
 
     if (JSON.stringify(guessedColors) === JSON.stringify(["black", "black", "black", "black"])) {
       this.setState({
-        gamerows: gamerows
+        gamerows: gamerows,
+        gameEndMessage: "You won, congratulations! :)"
       }, () => this.gameEnded())
 
-    } else {
+    } else if (JSON.stringify(guessedColors) !== JSON.stringify(["black", "black", "black", "black"]) && this.state.turn === 5) {
+      this.setState({
+        gamerows: gamerows,
+      }, () => this.gameEnded())
+    }
+    else {
       this.setState({
         gamerows: gamerows
       }, () => this.nextRound())
@@ -199,7 +205,8 @@ class App extends Component {
     this.setState({
       turn: 0,
       gamerows: gamerows,
-      gameEnded: false
+      gameEnded: false,
+      gameEndMessage: ""
     }, () => this.fillHiddenColors())
   }
   gameEnded = () => {
@@ -208,15 +215,17 @@ class App extends Component {
     gamerows[turn].status = "inactive"
     this.setState({
       gameEnded: true,
-      gamerows: gamerows
+      gamerows: gamerows,
+      gameEndMessage: "Sorry, you lost!"
     })
   }
   componentDidMount() {
     this.fillHiddenColors()
   }
   render() {
+
     const slideClass = this.state.gameEnded ? "slide-out" : ""
-    const opacityHiddenColors = this.state.gameEnded ? "1" : "0"
+    const opacityHiddenColors = this.state.gameEnded ? "1" : "1"
     const gameboard = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
       return (
@@ -242,7 +251,7 @@ class App extends Component {
         <InfoBoard
           turnNumber={this.state.turn}
           newGame={this.newGame}
-          gameEnd={this.gameEnded}
+          giveUp={this.gameEnded}
         />
 
         <div className="gameboard">
@@ -251,6 +260,7 @@ class App extends Component {
             hiddenColors={this.state.hiddenColors}
             opacity={opacityHiddenColors}
             slideOut={slideClass}
+            message={this.state.gameEndMessage}
           />
         </div>
         <Spielfiguren

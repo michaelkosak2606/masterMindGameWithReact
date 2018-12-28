@@ -19,6 +19,7 @@ export class HiddenColors extends Component {
         })
         return (
             <div className="hiddenColorsContainer">
+                <h1>{this.props.message}</h1>
                 <div className={"hiddenColors"} style={{ opacity: this.props.opacity }}>
                     {hiddenColorsRow}
                 </div>

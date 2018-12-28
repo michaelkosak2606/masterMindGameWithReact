@@ -6,7 +6,7 @@ export class InfoBoard extends Component {
             <div className="infoBoard">
                 <h1>Master Mind </h1>
                 <div className="infoBoardButton" onClick={this.props.newGame}> New Game</div>
-                <div className="infoBoardButton" onClick={this.props.gameEnd}>Give up</div>
+                <div className="infoBoardButton" onClick={this.props.giveUp}>Give up</div>
             </div>
         )
     }
