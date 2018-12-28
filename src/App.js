@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './components/Header'
 import InfoBoard from './components/InfoBoard'
 import GameRow from './components/GameRow'
 import HiddenColors from './components/HiddenColors'
@@ -8,6 +7,7 @@ import './App.css';
 
 class App extends Component {
   state = {
+    gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     turn: 0,
     gamerows: [
@@ -132,7 +132,7 @@ class App extends Component {
     })
     ////Fill guessedColors with null, if its shorter than 4
     console.log(guessedColors)
-    let differenceToFill = 4 - guessedColors.length
+    let differenceToFill = this.state.hiddenColors.length - guessedColors.length
     for (let i = 0; i < differenceToFill; i++) {
       guessedColors.push('transparent')
     }
@@ -164,13 +164,13 @@ class App extends Component {
   }
   fillHiddenColors = () => {
     const colors = [...this.state.figuren, 'transparent']
-    let randomNumbersArray = []
-    for (let i = 1; i <= 4; i++) {
+    let randomNumbers = []
+    for (let i = 1; i <= this.state.hiddenColors.length; i++) {
       let randomNUmber = Math.floor((Math.random() * colors.length))
       if (randomNUmber === 7) { randomNUmber = 6 }
-      randomNumbersArray.push(randomNUmber)
+      randomNumbers.push(randomNUmber)
     }
-    const hiddenColors = randomNumbersArray.map(randomNUmber => {
+    const hiddenColors = randomNumbers.map(randomNUmber => {
       return (colors[randomNUmber])
     })
 
@@ -185,17 +185,29 @@ class App extends Component {
     for (let i = 0; i < 6; i++) {
       gamerows[i].colors.forEach(color => color.color = "transparent")
       gamerows[i].guessedColors.forEach((color, index, guessedColors) => guessedColors[index] = "transparent")
+      gamerows[0].status = null
     }
     this.setState({
       turn: 0,
-      gamerows: gamerows
+      gamerows: gamerows,
+      gameEnded: false
     }, () => this.fillHiddenColors())
   }
-
+  gameEnd = () => {
+    const turn = this.state.turn
+    let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
+    gamerows[turn].status = "inactive"
+    this.setState({
+      gameEnded: true,
+      gamerows: gamerows
+    })
+  }
   componentDidMount() {
     this.fillHiddenColors()
   }
   render() {
+    const slideClass = this.state.gameEnded ? "slide-out" : ""
+    const opacityHiddenColors = this.state.gameEnded ? "1" : "0"
     const gameboard = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
       return (
@@ -217,16 +229,19 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header
+
+        <InfoBoard
+          turnNumber={this.state.turn}
           newGame={this.newGame}
-        />
-        <InfoBoard turnNumber={this.state.turn}
+          gameEnd={this.gameEnd}
         />
 
         <div className="gameboard">
           {gameboard}
           <HiddenColors
             hiddenColors={this.state.hiddenColors}
+            opacity={opacityHiddenColors}
+            slideOut={slideClass}
           />
         </div>
         <Spielfiguren

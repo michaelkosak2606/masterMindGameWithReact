@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class HiddenColors extends Component {
     render() {
-        const hiddenColors = this.props.hiddenColors.map((hiddenColor, index) => {
+        const hiddenColorsRow = this.props.hiddenColors.map((hiddenColor, index) => {
             return (
                 <div
                     className="gameCircle"
@@ -18,8 +18,15 @@ export class HiddenColors extends Component {
             )
         })
         return (
-            <div className="hiddenColors">
-                {hiddenColors}
+            <div className="hiddenColorsContainer">
+                <div className={"hiddenColors"} style={{ opacity: this.props.opacity }}>
+                    {hiddenColorsRow}
+                </div>
+                <div className={"hiddenColorsBoard " + this.props.slideOut}>
+                    <h1>
+                        MASTER MIND
+                    </h1>
+                </div>
             </div>
         )
     }
