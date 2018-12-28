@@ -10,8 +10,10 @@ export class GameRow extends Component {
                     key={colorField.id}
                 >
                     <div
+                        draggable
                         onDragOver={event => this.props.onDragOver(event)}
                         onDrop={event => this.props.onDrop(event, colorField.id)}
+                        onDragStart={event => this.props.onDragOut(event, colorField.id, colorField.color)}
                         className="circleInside"
                         style={{ backgroundColor: `${colorField.color}` }}
                     >

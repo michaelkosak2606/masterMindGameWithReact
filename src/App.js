@@ -103,6 +103,19 @@ class App extends Component {
     // console.log("dragging element with color: " + colorDragged)
     event.dataTransfer.setData("colorDragged", colorDragged)
   }
+  onDragOutHandler = (event, colorDraggedId, colorDragged) => {
+    event.dataTransfer.setData("colorDragged", colorDragged)
+    console.log(colorDragged + " has id " + colorDraggedId)
+    let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
+    let turn = this.state.turn
+    let colorArray = this.state.gamerows[turn].colors.map(color => { return { ...color } })
+    colorArray.find(object => object.id === colorDraggedId).color = "transparent"
+    gamerows[turn].colors = colorArray
+
+    this.setState({
+      gamerows: gamerows
+    })
+  }
 
   onDropHandler = (event, indexOfDropCircle) => {
     let colorDragged = event.dataTransfer.getData("colorDragged")
@@ -252,6 +265,8 @@ class App extends Component {
           checkTurnNumber={checkTurnNumber}
           turn={this.state.turn}
           guessedColors={this.state.gamerows[index].guessedColors}
+          onDragOut={this.onDragOutHandler}
+
         />
       )
     })
@@ -276,6 +291,7 @@ class App extends Component {
             gameEndMessage={this.state.gameEndMessage}
             loadingMessage={loadingMessage}
             gameEnded={this.state.gameEnded}
+
           />
         </div>
         <SideBoard
