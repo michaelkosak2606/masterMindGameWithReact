@@ -3,10 +3,13 @@ import InfoBoard from './components/InfoBoard'
 import GameRow from './components/GameRow'
 import HiddenColors from './components/HiddenColors'
 import Spielfiguren from './components/Spielfiguren'
+import LoadingCirlce from "./components/ReactLoading";
+
 import './App.css';
 
 class App extends Component {
   state = {
+    loading: true,
     gameEndMessage: "",
     gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
@@ -206,8 +209,9 @@ class App extends Component {
       turn: 0,
       gamerows: gamerows,
       gameEnded: false,
-      gameEndMessage: ""
-    }, () => this.fillHiddenColors())
+      gameEndMessage: "",
+      loading: true
+    }, () => this.loadingReady())
   }
   gameEnded = () => {
     const turn = this.state.turn
@@ -219,13 +223,19 @@ class App extends Component {
       gameEndMessage: "Sorry, you lost!"
     })
   }
-  componentDidMount() {
+  loadingReady = () => {
     this.fillHiddenColors()
+    setTimeout(() => this.setState({ loading: false }), 1200)
+  }
+
+  componentDidMount() {
+    this.loadingReady()
   }
   render() {
+    const loadingMessage = this.state.loading ? <LoadingCirlce /> : "Good Luck!"
 
     const slideClass = this.state.gameEnded ? "slide-out" : ""
-    const opacityHiddenColors = this.state.gameEnded ? "1" : "1"
+    const opacityHiddenColors = this.state.gameEnded ? "1" : "0"
     const gameboard = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
       return (
@@ -260,7 +270,8 @@ class App extends Component {
             hiddenColors={this.state.hiddenColors}
             opacity={opacityHiddenColors}
             slideOut={slideClass}
-            message={this.state.gameEndMessage}
+            gameEndMessage={this.state.gameEndMessage}
+            loadingMessage={loadingMessage}
           />
         </div>
         <Spielfiguren

@@ -179,6 +179,12 @@ margin-top: 0;
 display: flex;
 flex-direction: column-reverse;
 }
+.loading{
+  display: flex;
+}
+.loading span{
+  margin-right: 20px;
+}
 .hiddenColorsBoard{
 display: flex;
 height: 100px;

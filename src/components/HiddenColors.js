@@ -12,20 +12,19 @@ export class HiddenColors extends Component {
                         className="circleInside"
                         style={{ backgroundColor: `${hiddenColor}` }}
                     >
-                        {index}
                     </div>
                 </div>
             )
         })
         return (
             <div className="hiddenColorsContainer">
-                <h1>{this.props.message}</h1>
+                <h1>{this.props.gameEndMessage}</h1>
                 <div className={"hiddenColors"} style={{ opacity: this.props.opacity }}>
                     {hiddenColorsRow}
                 </div>
                 <div className={"hiddenColorsBoard " + this.props.slideOut}>
                     <h1>
-                        GOOD LUCK!
+                        {this.props.loadingMessage}
                     </h1>
                 </div>
             </div>
