@@ -105,7 +105,7 @@ class App extends Component {
   }
   onDragOutHandler = (event, colorDraggedId, colorDragged) => {
     event.dataTransfer.setData("colorDragged", colorDragged)
-    console.log(colorDragged + " has id " + colorDraggedId)
+
     let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
     let turn = this.state.turn
     let colorArray = this.state.gamerows[turn].colors.map(color => { return { ...color } })

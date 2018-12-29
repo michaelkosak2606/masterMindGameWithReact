@@ -20,10 +20,10 @@ export class HiddenColors extends Component {
         return (
             <div className="hiddenColorsContainer">
                 <h1 style={{ opacity: opacity }} >{this.props.gameEndMessage}</h1>
-                <div className={"hiddenColors"} style={{ opacity: this.props.opacity }}>
+                <div className="hiddenColors hiddenColors-moz" style={{ opacity: this.props.opacity }}>
                     {hiddenColorsRow}
                 </div>
-                <div className={"hiddenColorsBoard " + this.props.slideOut}>
+                <div className={"hiddenColorsBoard  hiddenColorsBoard-moz " + this.props.slideOut}>
                     <h1 >
                         {this.props.loadingMessage}
                     </h1>
