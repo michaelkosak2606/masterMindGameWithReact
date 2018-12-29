@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export class HiddenColors extends Component {
     render() {
+        const gameEndMessage = this.props.gameEndMessage === "Text" ? "" : "game-end-message"
         const opacity = this.props.gameEnded ? "1" : "0"
         const hiddenColorsRow = this.props.hiddenColors.map((hiddenColor, index) => {
             return (
@@ -19,7 +20,7 @@ export class HiddenColors extends Component {
         })
         return (
             <div className="hiddenColorsContainer">
-                <h1 style={{ opacity: opacity }} >{this.props.gameEndMessage}</h1>
+                <h1 style={{ opacity: opacity }} className={gameEndMessage}>{this.props.gameEndMessage}</h1>
                 <div className="hiddenColors hiddenColors-moz" style={{ opacity: this.props.opacity }}>
                     {hiddenColorsRow}
                 </div>

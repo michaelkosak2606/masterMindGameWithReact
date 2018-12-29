@@ -10,7 +10,7 @@ import './App.css';
 class App extends Component {
   state = {
     loading: true,
-    gameEndMessage: " Transparen Text ",
+    gameEndMessage: "Text",
     gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     turn: 0,
@@ -223,7 +223,7 @@ class App extends Component {
       turn: 0,
       gamerows: gamerows,
       gameEnded: false,
-      gameEndMessage: " Transparen Text ",
+      gameEndMessage: "Text",
       loading: true
     }, () => this.loadingReady())
   }
