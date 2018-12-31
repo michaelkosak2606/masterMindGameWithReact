@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class GameEndMessage extends Component {
-    render() {
-        const opacity = this.props.gameEnded ? "1" : "0"
-        const gameEndMessage = this.props.gameEndMessage === "Text" ? "" : "game-end-message"
+const GameEndMessage = props => {
+    const opacity = props.gameEnded ? "1" : "0"
+    const gameEndMessage = props.gameEndMessage === "Text" ? "" : "game-end-message"
 
-
-        return (
-            <div className={gameEndMessage} style={{ opacity: opacity }}>
-                <h1> {this.props.gameEndMessage} </h1>
-            </div>
-        )
-    }
+    return (
+        <div className={gameEndMessage} style={{ opacity: opacity }}>
+            <h1> {props.gameEndMessage} </h1>
+        </div>
+    )
 }
 
 export default GameEndMessage

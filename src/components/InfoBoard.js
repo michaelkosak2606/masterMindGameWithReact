@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class InfoBoard extends Component {
-    render() {
-        return (
-            <div className="infoBoard">
-                <h1>Master Mind </h1>
-                <div className="infoBoardButton" onClick={this.props.newGame}> New Game</div>
-                <div className="infoBoardButton" onClick={this.props.giveUp}>Give up</div>
-            </div>
-        )
-    }
+const InfoBoard = props => {
+    return (
+        <div className="info-board">
+            <h1>Master Mind </h1>
+            <div className="info-board-button" onClick={props.newGame}> new game</div>
+            <div className="info-board-button" onClick={props.giveUp}>give up</div>
+        </div>
+    )
 }
+
 
 export default InfoBoard

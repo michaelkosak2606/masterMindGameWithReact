@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import InfoBoard from './components/InfoBoard'
-import GameRow from './components/GameRow'
 import GameRows from './components/Gamerows'
 import HiddenColors from './components/HiddenColors'
 import SideBoard from './components/SideBoard'
@@ -11,7 +10,7 @@ import './App.css';
 class App extends Component {
   state = {
     loading: true,
-    gameEndMessage: "Text",
+    gameEndMessage: 'Text',
     gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     showHiddenColors: false,
@@ -79,18 +78,19 @@ class App extends Component {
       },
 
     ],
-    figuren: ["#FFDC00", "pink", "aquamarine", "#01FF70", "#0074D9", "#111111"]
+    gamePieces: ["#FFDC00", "pink", "aquamarine", "#01FF70", "#0074D9", "#111111"]
   }
+
   fillHiddenColors = () => {
-    const colors = [...this.state.figuren, 'transparent']
+    const colors = [...this.state.gamePieces, 'transparent']
     let randomNumbers = []
     for (let i = 1; i <= this.state.hiddenColors.length; i++) {
-      let randomNUmber = Math.floor((Math.random() * colors.length))
-      if (randomNUmber === 7) { randomNUmber = 6 }
-      randomNumbers.push(randomNUmber)
+      let randomNumber = Math.floor((Math.random() * colors.length))
+      if (randomNumber === colors.length) { randomNumber = colors.length - 1 }
+      randomNumbers.push(randomNumber)
     }
-    const hiddenColors = randomNumbers.map(randomNUmber => {
-      return (colors[randomNUmber])
+    const hiddenColors = randomNumbers.map(randomNumber => {
+      return (colors[randomNumber])
     })
     this.setState({
       hiddenColors: hiddenColors
@@ -102,7 +102,6 @@ class App extends Component {
   }
 
   onDragStartHandler = (event, colorDragged) => {
-    // console.log("dragging element with color: " + colorDragged)
     event.dataTransfer.setData("colorDragged", colorDragged)
   }
   onDragOutHandler = (event, colorDraggedId, colorDragged) => {
@@ -167,7 +166,6 @@ class App extends Component {
       }
     })
     ////Fill guessedColors with null, if its shorter than 4
-    console.log(guessedColors)
     let differenceToFill = this.state.hiddenColors.length - guessedColors.length
     for (let i = 0; i < differenceToFill; i++) {
       guessedColors.push('transparent')
@@ -216,7 +214,7 @@ class App extends Component {
   newGame = () => {
     let gamerows = this.state.gamerows.map(gamerow => { return { ...gamerow } })
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < this.state.gamerows.length; i++) {
       gamerows[i].colors.forEach(color => color.color = "transparent")
       gamerows[i].guessedColors.forEach((color, index, guessedColors) => guessedColors[index] = "transparent")
       gamerows[this.state.turn].status = "inactive"
@@ -284,7 +282,6 @@ class App extends Component {
             gameEndMessage={this.state.gameEndMessage}
             loadingMessage={loadingMessage}
             gameEnded={this.state.gameEnded}
-
           />
         </div>
         <SideBoard

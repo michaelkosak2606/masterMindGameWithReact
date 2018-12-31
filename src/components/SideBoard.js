@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class SideBoard extends Component {
-    render() {
-        const spielFiguren = this.props.data.figuren.map((figurFarbe, index) => {
-            return (
-                <div
-                    draggable
-                    onDragStart={event => this.props.onDragStart(event, figurFarbe)}
-                    key={index}
-                    className="circleInside spielfiguren"
-                    style={{ backgroundColor: `${figurFarbe}` }}
-                >
-                </div>
-            )
-        })
+const SideBoard = props => {
 
+    const gamePieces = props.data.gamePieces.map((color, index) => {
         return (
-            <div className="side-board">
-                {spielFiguren}
+            <div
+                className="circle-inside game-pieces"
+                draggable
+                onDragStart={event => props.onDragStart(event, color)}
+                key={index}
+                style={{ backgroundColor: `${color}` }}
+            >
             </div>
         )
-    }
+    })
+
+    return (
+        <div className="side-board">
+            {gamePieces}
+        </div>
+    )
 }
+
 
 export default SideBoard

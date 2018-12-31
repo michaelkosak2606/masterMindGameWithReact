@@ -1,35 +1,33 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class HiddenColors extends Component {
-    render() {
-
-        const hiddenColorsRow = this.props.hiddenColors.map((hiddenColor, index) => {
-            return (
-                <div
-                    className="gameCircle"
-                    key={index}
-                >
-                    <div
-                        className="circleInside"
-                        style={{ backgroundColor: `${hiddenColor}` }}
-                    >
-                    </div>
-                </div>
-            )
-        })
+const HiddenColors = props => {
+    const hiddenColorsRow = props.hiddenColors.map((hiddenColor, index) => {
         return (
-            <div className="hidden-colors-container">
-                <div className={"hidden-colors-board " + this.props.slideOut}>
-                    <h1 >
-                        {this.props.loadingMessage}
-                    </h1>
-                </div>
-                <div className="hidden-colors" style={{ opacity: this.props.opacity }}>
-                    {hiddenColorsRow}
+            <div
+                className="game-circle"
+                key={index}
+            >
+                <div
+                    className="circle-inside"
+                    style={{ backgroundColor: `${hiddenColor}` }}
+                >
                 </div>
             </div>
         )
-    }
+    })
+    return (
+        <div className="hidden-colors-container">
+            <div className={"hidden-colors-board " + props.slideOut}>
+                <h1 >
+                    {props.loadingMessage}
+                </h1>
+            </div>
+            <div className="hidden-colors" style={{ opacity: props.opacity }}>
+                {hiddenColorsRow}
+            </div>
+        </div>
+    )
 }
+
 
 export default HiddenColors
