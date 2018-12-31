@@ -29,7 +29,7 @@ export class GameRow extends Component {
                 <div className="arrow-right"></div>
             </div>
         return (
-            <div className={`gameRow  gameRow-moz ${this.props.clickable}`}>
+            <div className={`game-row  game-row-moz ${this.props.clickable}`}>
 
                 {rightArrowAndTurn}
                 <div className="hits">

@@ -74,7 +74,7 @@
   flex-direction: column-reverse;
 }
 
-.gameRow{
+.game-row{
   display: flex;
   align-items: center;
   justify-content:center;
@@ -84,6 +84,11 @@
 .inactive{
   pointer-events: none; 
   opacity: 0.72;
+}
+
+.game-rows{
+  display:flex;
+  flex-direction: column-reverse;
 }
 
 .side-board{
@@ -178,7 +183,7 @@
 .game-end-message{
   display: flex;
   justify-content: center;
-  /* margin: 5px; */
+  margin: 10px;
   transition: opacity 1.7s ease-out;
 }
 
@@ -222,7 +227,7 @@
     transform: translateY(0px)
   }
   100%{    
-    transform: translateY(-105px)
+    transform: translateY(-100px)
   }
 }
 
@@ -244,7 +249,7 @@
 }
 
 @-moz-document url-prefix() {
-    .gameRow-moz{
+    .game-row-moz{
       margin-bottom: -3px;
     }
 }

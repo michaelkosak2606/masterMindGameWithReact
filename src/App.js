@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import InfoBoard from './components/InfoBoard'
 import GameRow from './components/GameRow'
+import GameRows from './components/Gamerows'
 import HiddenColors from './components/HiddenColors'
 import SideBoard from './components/SideBoard'
 import LoadingCirlce from "./components/LoadingCircle";
 import GameEndMessage from "./components/GameEndMessage";
-
 import './App.css';
 
 class App extends Component {
@@ -253,31 +253,8 @@ class App extends Component {
   }
   render() {
     const loadingMessage = this.state.loading ? <LoadingCirlce /> : "Good Luck!"
-
     const slideClass = this.state.gameEnded ? "slide-out" : ""
     const opacityHiddenColors = this.state.showHiddenColors ? "1" : "0"
-
-
-    const gameRows = this.state.gamerows.map((row, index) => {
-      const checkTurnNumber = this.state.turn === index
-      return (
-        <GameRow
-          key={index}
-          onDragOver={this.onDragOverHandler}
-          onDrop={this.onDropHandler}
-          colors={this.state.gamerows[index].colors}
-          clickable={row.status}
-          nextRound={this.checkSameColors}
-          checkTurnNumber={checkTurnNumber}
-          turn={this.state.turn}
-          guessedColors={this.state.gamerows[index].guessedColors}
-          onDragOut={this.onDragOutHandler}
-          opacity={index}
-        />
-      )
-    })
-
-
 
     return (
       <div className="App">
@@ -288,7 +265,14 @@ class App extends Component {
         />
 
         <div className="gameboard">
-          {gameRows}
+          <GameRows
+            gamerows={this.state.gamerows}
+            turn={this.state.turn}
+            onDragOver={this.onDragOverHandler}
+            onDrop={this.onDropHandler}
+            onDragOut={this.onDragOutHandler}
+            nextRound={this.checkSameColors}
+          />
           <GameEndMessage
             gameEnded={this.state.gameEnded}
             gameEndMessage={this.state.gameEndMessage}
