@@ -3,7 +3,7 @@ import Button from './Button'
 
 export class GameRow extends Component {
     render() {
-        const colorFields = this.props.data.map(colorField => {
+        const colorFields = this.props.colors.map(colorField => {
             return (
                 <div
                     className="gameCircle"
@@ -21,16 +21,17 @@ export class GameRow extends Component {
                 </div>
             )
         })
-        const turnNumber = this.props.checkTurnNumber ?
-            <h2>Turn {this.props.turn + 1}</h2> : null
 
-        const rightArrow = this.props.checkTurnNumber ?
-            <div className="arrow-right"></div> : null
-
+        const opacity = this.props.opacity === this.props.turn ? "1" : "0"
+        const rightArrowAndTurn =
+            <div className="right-arrow-container" style={{ opacity: opacity }}>
+                <h2>Turn {this.props.turn + 1}</h2>
+                <div className="arrow-right"></div>
+            </div>
         return (
             <div className={`gameRow  gameRow-moz ${this.props.clickable}`}>
-                {turnNumber}
-                {rightArrow}
+
+                {rightArrowAndTurn}
                 <div className="hits">
                     <div
                         className="square"

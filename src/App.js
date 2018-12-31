@@ -4,6 +4,7 @@ import GameRow from './components/GameRow'
 import HiddenColors from './components/HiddenColors'
 import SideBoard from './components/SideBoard'
 import LoadingCirlce from "./components/LoadingCircle";
+import GameEndMessage from "./components/GameEndMessage";
 
 import './App.css';
 
@@ -13,6 +14,7 @@ class App extends Component {
     gameEndMessage: "Text",
     gameEnded: false,
     hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
+    showHiddenColors: false,
     turn: 0,
     gamerows: [
       {
@@ -179,7 +181,8 @@ class App extends Component {
       this.setState({
         gamerows: gamerows,
         gameEnded: true,
-        gameEndMessage: "You won, congratulations! :)"
+        gameEndMessage: "You won, congratulations! :)",
+        showHiddenColors: true
       })
 
     } else if (JSON.stringify(guessedColors) !== JSON.stringify(["black", "black", "black", "black"]) && this.state.turn === 5) {
@@ -224,7 +227,8 @@ class App extends Component {
       gamerows: gamerows,
       gameEnded: false,
       gameEndMessage: "Text",
-      loading: true
+      loading: true,
+      showHiddenColors: false
     }, () => this.loadingReady())
   }
   gameEnded = () => {
@@ -236,12 +240,12 @@ class App extends Component {
         gameEnded: true,
         gamerows: gamerows,
         gameEndMessage: "Sorry, you lost!"
-      })
+      }, () => setTimeout(() => this.setState({ showHiddenColors: true }), 500)
+      )
     }
   }
   loadingReady = () => {
-    this.fillHiddenColors()
-    setTimeout(() => this.setState({ loading: false }), 1200)
+    setTimeout(() => this.setState({ loading: false }, () => { this.fillHiddenColors() }), 1200)
   }
 
   componentDidMount() {
@@ -251,22 +255,24 @@ class App extends Component {
     const loadingMessage = this.state.loading ? <LoadingCirlce /> : "Good Luck!"
 
     const slideClass = this.state.gameEnded ? "slide-out" : ""
-    const opacityHiddenColors = this.state.gameEnded ? "1" : "0"
-    const gameboard = this.state.gamerows.map((row, index) => {
+    const opacityHiddenColors = this.state.showHiddenColors ? "1" : "0"
+
+
+    const gameRows = this.state.gamerows.map((row, index) => {
       const checkTurnNumber = this.state.turn === index
       return (
         <GameRow
           key={index}
           onDragOver={this.onDragOverHandler}
           onDrop={this.onDropHandler}
-          data={this.state.gamerows[index].colors}
+          colors={this.state.gamerows[index].colors}
           clickable={row.status}
           nextRound={this.checkSameColors}
           checkTurnNumber={checkTurnNumber}
           turn={this.state.turn}
           guessedColors={this.state.gamerows[index].guessedColors}
           onDragOut={this.onDragOutHandler}
-
+          opacity={index}
         />
       )
     })
@@ -275,7 +281,6 @@ class App extends Component {
 
     return (
       <div className="App">
-
         <InfoBoard
           turnNumber={this.state.turn}
           newGame={this.newGame}
@@ -283,7 +288,11 @@ class App extends Component {
         />
 
         <div className="gameboard">
-          {gameboard}
+          {gameRows}
+          <GameEndMessage
+            gameEnded={this.state.gameEnded}
+            gameEndMessage={this.state.gameEndMessage}
+          />
           <HiddenColors
             hiddenColors={this.state.hiddenColors}
             opacity={opacityHiddenColors}
