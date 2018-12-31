@@ -1,14 +1,14 @@
 {
-  "main.css": "/masterMindGameWithReact/static/css/main.51ab85e2.chunk.css",
-  "main.js": "/masterMindGameWithReact/static/js/main.7a6f8218.chunk.js",
-  "main.js.map": "/masterMindGameWithReact/static/js/main.7a6f8218.chunk.js.map",
-  "static/js/1.e9626dcb.chunk.js": "/masterMindGameWithReact/static/js/1.e9626dcb.chunk.js",
-  "static/js/1.e9626dcb.chunk.js.map": "/masterMindGameWithReact/static/js/1.e9626dcb.chunk.js.map",
+  "main.css": "/masterMindGameWithReact/static/css/main.20f13823.chunk.css",
+  "main.js": "/masterMindGameWithReact/static/js/main.5e47d43d.chunk.js",
+  "main.js.map": "/masterMindGameWithReact/static/js/main.5e47d43d.chunk.js.map",
+  "static/js/1.1e9131d8.chunk.js": "/masterMindGameWithReact/static/js/1.1e9131d8.chunk.js",
+  "static/js/1.1e9131d8.chunk.js.map": "/masterMindGameWithReact/static/js/1.1e9131d8.chunk.js.map",
   "runtime~main.js": "/masterMindGameWithReact/static/js/runtime~main.9be866d0.js",
   "runtime~main.js.map": "/masterMindGameWithReact/static/js/runtime~main.9be866d0.js.map",
-  "static/media/App.css": "/masterMindGameWithReact/static/media/sideBoardOp1.a8d2da52.png",
-  "static/css/main.51ab85e2.chunk.css.map": "/masterMindGameWithReact/static/css/main.51ab85e2.chunk.css.map",
+  "static/media/App.css": "/masterMindGameWithReact/static/media/sideBoardOpacity.a8d2da52.png",
+  "static/css/main.20f13823.chunk.css.map": "/masterMindGameWithReact/static/css/main.20f13823.chunk.css.map",
   "index.html": "/masterMindGameWithReact/index.html",
-  "precache-manifest.c11c75d8a04b2a58abd2a74cf6788044.js": "/masterMindGameWithReact/precache-manifest.c11c75d8a04b2a58abd2a74cf6788044.js",
+  "precache-manifest.7968327047e905e20990d770461e82cf.js": "/masterMindGameWithReact/precache-manifest.7968327047e905e20990d770461e82cf.js",
   "service-worker.js": "/masterMindGameWithReact/service-worker.js"
 }
