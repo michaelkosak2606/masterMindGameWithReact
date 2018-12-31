@@ -91,6 +91,15 @@
   flex-direction: column-reverse;
 }
 
+.fade-rows-appear{
+ opacity: 0;
+}
+
+.fade-rows-appear-active{
+ opacity: 1;
+ transition: opacity 0.5s ease-in;
+}
+
 .side-board{
   grid-column: span 2;
   display: flex;

@@ -1,4 +1,6 @@
 import React from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
+
 
 const SideBoard = props => {
 
@@ -16,9 +18,16 @@ const SideBoard = props => {
     })
 
     return (
-        <div className="side-board">
-            {gamePieces}
-        </div>
+        <CSSTransitionGroup
+            className="side-board"
+            transitionName="fade-rows"
+            transitionAppear={true}
+            transitionAppearTimeOut={500}
+        >
+            <div>
+                {gamePieces}
+            </div>
+        </CSSTransitionGroup>
     )
 }
 

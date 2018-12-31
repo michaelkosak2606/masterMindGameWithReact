@@ -1,5 +1,6 @@
 import React from 'react'
 import GameRow from './GameRow'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 
 const GameRows = props => {
@@ -23,9 +24,15 @@ const GameRows = props => {
         )
     })
     return (
-        <div className="game-rows">
-            {gameRows}
-        </div>
+        <CSSTransitionGroup
+            transitionName="fade-rows"
+            transitionAppear={true}
+            transitionAppearTimeOut={500}
+        >
+            <div className="game-rows">
+                {gameRows}
+            </div>
+        </CSSTransitionGroup>
     )
 }
 
