@@ -2,14 +2,14 @@ import React from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
 
 
-const SideBoard = props => {
+const SideBoard = ({ data, onDragStart }) => {
 
-    const gamePieces = props.data.gamePieces.map((color, index) => {
+    const gamePieces = data.gamePieces.map((color, index) => {
         return (
             <div
                 className="circle-inside game-pieces"
                 draggable
-                onDragStart={event => props.onDragStart(event, color)}
+                onDragStart={event => onDragStart(event, color)}
                 key={index}
                 style={{ backgroundColor: `${color}` }}
             >

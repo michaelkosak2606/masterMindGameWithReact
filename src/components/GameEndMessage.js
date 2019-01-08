@@ -1,12 +1,12 @@
 import React from 'react'
 
-const GameEndMessage = props => {
-    const opacity = props.gameEnded ? "1" : "0"
-    const gameEndMessage = props.gameEndMessage === "Text" ? "" : "game-end-message"
+const GameEndMessage = ({ gameEnded, gameEndMessage }) => {
+    const opacity = gameEnded ? "1" : "0"
+    const messageDelivered = gameEndMessage === "Text" ? "" : "game-end-message"
 
     return (
-        <div className={gameEndMessage} style={{ opacity: opacity }}>
-            <h1> {props.gameEndMessage} </h1>
+        <div className={messageDelivered} style={{ opacity: opacity }}>
+            <h1> {gameEndMessage} </h1>
         </div>
     )
 }

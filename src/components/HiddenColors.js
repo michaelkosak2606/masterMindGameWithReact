@@ -1,7 +1,7 @@
 import React from 'react'
 
-const HiddenColors = props => {
-    const hiddenColorsRow = props.hiddenColors.map((hiddenColor, index) => {
+const HiddenColors = ({ hiddenColors, slideOut, loadingMessage, opacity }) => {
+    const hiddenColorsRow = hiddenColors.map((hiddenColor, index) => {
         return (
             <div
                 className="game-circle"
@@ -17,12 +17,12 @@ const HiddenColors = props => {
     })
     return (
         <div className="hidden-colors-container">
-            <div className={"hidden-colors-board " + props.slideOut}>
+            <div className={"hidden-colors-board " + slideOut}>
                 <h1 >
-                    {props.loadingMessage}
+                    {loadingMessage}
                 </h1>
             </div>
-            <div className="hidden-colors" style={{ opacity: props.opacity }}>
+            <div className="hidden-colors" style={{ opacity: opacity }}>
                 {hiddenColorsRow}
             </div>
         </div>

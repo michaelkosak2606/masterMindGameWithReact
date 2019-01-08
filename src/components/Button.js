@@ -1,13 +1,13 @@
 import React from 'react'
 
-const button = props => {
+const button = ({ onClick, text }) => {
     return (
         <div>
             <button
                 className="next-round-button"
-                onClick={props.onClick}
+                onClick={onClick}
             >
-                {props.text}
+                {text}
             </button>
         </div>
     )

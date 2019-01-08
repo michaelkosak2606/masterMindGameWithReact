@@ -5,80 +5,32 @@ import HiddenColors from './components/HiddenColors'
 import SideBoard from './components/SideBoard'
 import LoadingCirlce from "./components/LoadingCircle";
 import GameEndMessage from "./components/GameEndMessage";
+import { initialState } from './initialState'
 import './App.css';
 
 class App extends Component {
+
   state = {
     loading: true,
     gameEndMessage: 'Text',
     gameEnded: false,
-    hiddenColors: ['transparent', 'transparent', 'transparent', 'transparent'],
     showHiddenColors: false,
     turn: 0,
-    gamerows: [
-      {
-        status: null,
-        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
-        colors: [
-          { id: 1, color: 'transparent' },
-          { id: 2, color: 'transparent' },
-          { id: 3, color: 'transparent' },
-          { id: 4, color: 'transparent' }
-        ]
-      },
-      {
-        status: "inactive",
-        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
-        colors: [
-          { id: 5, color: 'transparent' },
-          { id: 6, color: 'transparent' },
-          { id: 7, color: 'transparent' },
-          { id: 8, color: 'transparent' }
-        ]
-      },
-      {
-        status: "inactive",
-        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
-        colors: [
-          { id: 9, color: 'transparent' },
-          { id: 10, color: 'transparent' },
-          { id: 11, color: 'transparent' },
-          { id: 12, color: 'transparent' }
-        ]
-      },
-      {
-        status: "inactive",
-        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
-        colors: [
-          { id: 13, color: 'transparent' },
-          { id: 14, color: 'transparent' },
-          { id: 15, color: 'transparent' },
-          { id: 16, color: 'transparent' }
-        ]
-      },
-      {
-        status: "inactive",
-        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
-        colors: [
-          { id: 17, color: 'transparent' },
-          { id: 18, color: 'transparent' },
-          { id: 19, color: 'transparent' },
-          { id: 20, color: 'transparent' }
-        ]
-      },
-      {
-        status: "inactive",
-        guessedColors: ['transparent', 'transparent', 'transparent', 'transparent'],
-        colors: [
-          { id: 21, color: 'transparent' },
-          { id: 22, color: 'transparent' },
-          { id: 23, color: 'transparent' },
-          { id: 24, color: 'transparent' }
-        ]
-      },
-
-    ],
-    gamePieces: ["#FFDC00", "pink", "aquamarine", "#01FF70", "#0074D9", "#111111"]
+    hiddenColors: [],
+    gamerows: [],
+    gamePieces: []
+  }
+  componentWillMount() {
+    this.setState({
+      hiddenColors: initialState.hiddenColors,
+      gamerows: initialState.gamerows,
+      gamePieces: initialState.gamePieces
+    })
+  }
+  componentDidMount() {
+    this.loadingReady()
+    const value = { ...this.state.gameEndMessage }
+    localStorage.setItem("state", value)
   }
 
   fillHiddenColors = () => {
@@ -246,16 +198,14 @@ class App extends Component {
     setTimeout(() => this.setState({ loading: false }, () => { this.fillHiddenColors() }), 1200)
   }
 
-  componentDidMount() {
-    this.loadingReady()
-  }
+
   render() {
     const loadingMessage = this.state.loading ? <LoadingCirlce /> : "Good Luck!"
     const slideClass = this.state.gameEnded ? "slide-out" : ""
     const opacityHiddenColors = this.state.showHiddenColors ? "1" : "0"
 
     return (
-      <div className="App">
+      <div className="App browse-container">
         <InfoBoard
           turnNumber={this.state.turn}
           newGame={this.newGame}

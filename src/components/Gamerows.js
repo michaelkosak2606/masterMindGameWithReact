@@ -3,22 +3,22 @@ import GameRow from './GameRow'
 import { CSSTransitionGroup } from 'react-transition-group'
 
 
-const GameRows = props => {
-    const data = props.gamerows
+const GameRows = ({ gamerows, turn, onDragOver, onDrop, onDragOut, nextRound }) => {
+    const data = gamerows
     const gameRows = data.map((row, index) => {
-        const checkTurnNumber = props.turn === index
+        const checkTurnNumber = turn === index
         return (
             <GameRow
                 key={index}
-                onDragOver={props.onDragOver}
-                onDrop={props.onDrop}
+                onDragOver={onDragOver}
+                onDrop={onDrop}
                 colors={data[index].colors}
                 clickable={row.status}
-                nextRound={props.nextRound}
+                nextRound={nextRound}
                 checkTurnNumber={checkTurnNumber}
-                turn={props.turn}
+                turn={turn}
                 guessedColors={data[index].guessedColors}
-                onDragOut={props.onDragOut}
+                onDragOut={onDragOut}
                 opacity={index}
             />
         )
