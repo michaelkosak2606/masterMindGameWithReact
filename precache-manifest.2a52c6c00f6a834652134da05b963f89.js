@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/masterMindGameWithReact/static/js/runtime~main.9be866d0.js"
   },
   {
-    "revision": "68dddb1d3fe9b5270f0f",
-    "url": "/masterMindGameWithReact/static/js/main.68dddb1d.chunk.js"
+    "revision": "ddfe6d4eacd8392775c7",
+    "url": "/masterMindGameWithReact/static/js/main.ddfe6d4e.chunk.js"
   },
   {
     "revision": "a287b82f5b26599b3926",
     "url": "/masterMindGameWithReact/static/js/1.a287b82f.chunk.js"
   },
   {
-    "revision": "68dddb1d3fe9b5270f0f",
-    "url": "/masterMindGameWithReact/static/css/main.2c7ee6e9.chunk.css"
+    "revision": "ddfe6d4eacd8392775c7",
+    "url": "/masterMindGameWithReact/static/css/main.5384d94a.chunk.css"
   },
   {
-    "revision": "64c1abc7a15e3d4845f8a0b27bb64913",
+    "revision": "88d55d73ee2b7ae66365e95b88f25e7d",
     "url": "/masterMindGameWithReact/index.html"
   }
 ];
